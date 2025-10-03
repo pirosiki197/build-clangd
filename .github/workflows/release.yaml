@@ -22,9 +22,6 @@ jobs:
           git clone ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
           cd build-clangd
 
-      - name: Install Build Dependencies
-        run: ./install-dependencies.sh
-
       - name: Run Build Script
         run: ./build-clangd.sh
 
