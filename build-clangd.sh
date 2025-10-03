@@ -68,8 +68,8 @@ function build_mpc() {
 function build_gcc() {
     echo "--- 4/5: Building GCC ---"
     cd /tmp
-    curl -L https://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.xz | tar -xJ
-    cd gcc-12.2.0
+    curl -L https://github.com/gcc-mirror/gcc/archive/refs/tags/releases/gcc-12.5.0.tar.gz | tar -xz
+    cd gcc-releases-gcc-12.5.0
 
     # Collect licenses
     cp COPYING "${LICENSE_DIR}/gcc-COPYING"
