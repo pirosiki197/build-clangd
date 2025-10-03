@@ -18,14 +18,12 @@ jobs:
           yum install -y curl tar bzip2 gzip xz make git file gcc gcc-c++ m4
 
       - name: Checkout repository
-        run: |
-          git clone ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
-          cd build-clangd
-          echo $PWD
-          ls
+        run: git clone ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
 
       - name: Run Build Script
-        run: ./build-clangd.sh
+        run: |
+          cd build-clangd
+          ./build-clangd.sh
 
       - name: Package Build Artifact
         run: tar -czvf clangd-centos7.tar.gz -C /root/.local .
