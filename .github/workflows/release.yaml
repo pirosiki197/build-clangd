@@ -21,6 +21,8 @@ jobs:
         run: |
           git clone ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
           cd build-clangd
+          echo $PWD
+          ls
 
       - name: Run Build Script
         run: ./build-clangd.sh
