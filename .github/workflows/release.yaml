@@ -11,8 +11,16 @@ jobs:
     container: centos:centos7
 
     steps:
+      - name: Install Build Dependencies
+        run: |
+          sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*.repo
+          sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*.repo
+          yum install -y curl tar bzip2 gzip xz make git file gcc gcc-c++ m4
+
       - name: Checkout repository
-        uses: actions/checkout@v3
+        run: |
+          git clone ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}.git
+          cd build-clangd
 
       - name: Install Build Dependencies
         run: ./install-dependencies.sh
