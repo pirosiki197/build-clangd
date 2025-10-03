@@ -11,11 +11,11 @@ jobs:
     container: centos:centos7
 
     steps:
-      - name: Install Build Dependencies
-        run: ./install-dependencies.sh
-
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install Build Dependencies
+        run: ./install-dependencies.sh
 
       - name: Run Build Script
         run: ./build-clangd.sh

@@ -111,7 +111,7 @@ function main() {
     echo "Installation prefix: ${PREFIX}"
 
     # Create all necessary directories
-    mkdir -p "${PREFIX}" "${_build_dir}" "${_build_dir_small}" "${_build_dir_medium}" "${LICENSE_DIR}"
+    mkdir -p "${PREFIX}" "${_build_dir}" "${LICENSE_DIR}"
 
     # Set up environment variables for the build process
     export PATH="${PREFIX}/bin:${PATH}"
@@ -128,7 +128,7 @@ function main() {
 
     # Clean up temporary build directories
     echo "Cleaning up build directories..."
-    rm -rf "${_build_dir}"/* "${_build_dir_small}"/* "${_build_dir_medium}"/*
+    rm -rf "${_build_dir:?}"/*
 
     echo ""
     echo "✅ Success! clangd and its dependencies have been installed to ${PREFIX}"
