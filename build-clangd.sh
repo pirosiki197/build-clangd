@@ -16,8 +16,6 @@ readonly PREFIX="${HOME}/.local"
 
 # Temporary directories for the build process.
 readonly _build_dir="${HOME}/build"
-readonly _build_dir_small="/dev/shm"  # Use fast RAM disk for small libraries
-readonly _build_dir_medium="/tmp"
 
 # Directory to store license files.
 readonly LICENSE_DIR="${PREFIX}/share/licenses/clangd-stack"
@@ -27,7 +25,7 @@ readonly LICENSE_DIR="${PREFIX}/share/licenses/clangd-stack"
 
 function build_gmp() {
     echo "--- 1/5: Building GMP ---"
-    cd "${_build_dir_small}"
+    cd /tmp
     curl -L https://gcc.gnu.org/pub/gcc/infrastructure/gmp-6.2.1.tar.bz2 | tar -xj
     cd gmp-6.2.1
 
@@ -41,7 +39,7 @@ function build_gmp() {
 
 function build_mpfr() {
     echo "--- 2/5: Building MPFR ---"
-    cd "${_build_dir_small}"
+    cd /tmp
     curl -L https://gcc.gnu.org/pub/gcc/infrastructure/mpfr-4.1.0.tar.bz2 | tar -xj
     cd mpfr-4.1.0
 
@@ -55,7 +53,7 @@ function build_mpfr() {
 
 function build_mpc() {
     echo "--- 3/5: Building MPC ---"
-    cd "${_build_dir_small}"
+    cd /tmp
     curl -L https://gcc.gnu.org/pub/gcc/infrastructure/mpc-1.2.1.tar.gz | tar -xz
     cd mpc-1.2.1
 
@@ -69,7 +67,7 @@ function build_mpc() {
 
 function build_gcc() {
     echo "--- 4/5: Building GCC ---"
-    cd "${_build_dir_medium}"
+    cd /tmp
     curl -L https://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.xz | tar -xJ
     cd gcc-12.2.0
 

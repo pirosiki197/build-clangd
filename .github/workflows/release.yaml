@@ -12,25 +12,13 @@ jobs:
 
     steps:
       - name: Install Build Dependencies
-        run: |
-          sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*.repo
-          sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*.repo
-          yum install -y centos-release-scl epel-release
-          sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-SCLo-*.repo
-          sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
-          sed -i -e "s|^mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/epel.repo
-          sed -i -e "s|^#baseurl=http://download.fedoraproject.org/pub/epel/|baseurl=https://archives.fedoraproject.org/pub/archive/epel/|g" /etc/yum.repos.d/epel.repo
-          yum install -y curl tar bzip2 gzip xz make git file
-          yum install -y devtoolset-11-gcc devtoolset-11-gcc-c++
-          yum install -y cmake3
-          ln -s /usr/bin/cmake3 /usr/bin/cmake
+        run: ./install-dependencies.sh
 
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run Build Script
-        run: |
-          scl enable devtoolset-11 -- ./build-clangd.sh
+        run: ./build-clangd.sh
 
       - name: Package Build Artifact
         run: tar -czvf clangd-centos7.tar.gz -C /root/.local .
