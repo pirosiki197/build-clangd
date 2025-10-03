@@ -58,7 +58,7 @@ function build_mpc() {
     cd mpc-1.2.1
 
     # Collect license
-    cp COPYING "${LICENSE_DIR}/mpc-COPYING"
+    # cp COPYING "${LICENSE_DIR}/mpc-COPYING"
 
     ./configure --prefix="${PREFIX}" --with-gmp="${PREFIX}" --with-mpfr="${PREFIX}" --disable-shared --enable-static
     make -j"$(nproc)"
