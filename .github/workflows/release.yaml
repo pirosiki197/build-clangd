@@ -15,7 +15,7 @@ jobs:
         run: |
           docker run --rm -v "$HOME/dist:/root/.local" -v "$PWD:/work" -w /work \
             centos:centos7
-            sh -c "./install-dependencies.sh && ./build-clangd.sh"
+            bash -c "./install-dependencies.sh && ./build-clangd.sh"
 
       - name: Package Build Artifact
         run: tar -czvf clangd-centos7.tar.gz -C $HOME/dist .
