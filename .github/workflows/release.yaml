@@ -27,7 +27,7 @@ jobs:
           ./build-clangd.sh
 
       - name: Package Build Artifact
-        run: tar -czvf clangd-centos7.tar.gz -C /root/.local .
+        run: tar -czvf clangd-centos7.tar.gz -C $HOME/.local .
 
       - name: Create GitHub Release and Upload Artifact
         uses: softprops/action-gh-release@v2
