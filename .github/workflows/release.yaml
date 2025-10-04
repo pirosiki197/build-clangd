@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build Clangd for CentOS 7
         run: |
-          docker run --rm -v "HOME/dist:/root/.local" -v "$PWD:/work" -w /work \
+          docker run --rm -v "$HOME/dist:/root/.local" -v "$PWD:/work" -w /work \
             centos:centos7
             sh -c "./install-dependencies.sh && ./build-clangd.sh"
 
